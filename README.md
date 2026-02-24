@@ -2,194 +2,218 @@
 
 > **Système de production vidéo programmatique piloté par la donnée.** `[2025-12-25]`
 
-![Remotion](https://img.shields.io/badge/Remotion-4.0-BC13FE?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNFY4bDYgNHoiLz48L3N2Zz4=)
+![Remotion](https://img.shields.io/badge/Remotion-4.0-BC13FE?style=flat-square)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Claude Code](https://img.shields.io/badge/Claude_Code-CLI-BC13FE?style=flat-square&logo=anthropic&logoColor=white)
+![Claude Code](https://img.shields.io/badge/Claude_Code-CLI-BC13FE?style=flat-square)
 
 ---
 
 ## CONCEPT
 
-**MMI // AUGMENTED_CREATION** est une vidéo de présentation institutionnelle pour le BUT Métiers du Multimédia et de l'Internet — parcours Création Numérique. Le projet démontre qu'une production audiovisuelle de haute fidélité peut être **entièrement générée par du code React**, sans outil de montage traditionnel.
+Présentation institutionnelle du BUT Métiers du Multimédia et de l'Internet — parcours Création Numérique. Le projet est une démonstration de production audiovisuelle entièrement générée par code React, sans outil de montage traditionnel.
 
-Chaque frame est une fonction pure du temps. Chaque transition est un paramètre. Chaque donnée est une variable.
+Chaque frame est une fonction pure du temps. Chaque transition est un paramètre calculé. Chaque donnée affichée est injectée depuis une source de vérité unique.
 
 ---
 
-## PIPELINE DATA-DRIVEN
+## ARCHITECTURE
 
-Le visuel est intégralement piloté par `src/mmiData.ts` — source de vérité unique du projet.
+### Pipeline Data-Driven
+
+Le moteur de rendu génère l'intégralité des séquences visuelles à partir d'un seul fichier de structure : `src/mmiData.ts`.
 
 ```ts
-// src/mmiData.ts — modifier ici suffit à régénérer l'intégralité de la vidéo
+// Source de vérité unique — modifier ce fichier régénère la vidéo intégralement
 export interface Section {
   id: string;
   title: string;
   subtitle: string;
   durationInFrames: number;
   tags: string[];
-  image: string;       // asset lié à la section
+  image: string;
 }
 ```
 
-| Section ID | Titre | Image | Durée |
+Toute modification de contenu (titre, durée, asset) ne nécessite aucune intervention dans les composants de rendu. Le moteur recalcule automatiquement les timecodes, les transitions et la durée totale.
+
+**Mapping des sections :**
+
+| `id` | Titre | Asset | Durée |
 |---|---|---|---|
-| `intro` | BUT MMI | — | 90f / 3s |
-| `creation-numerique` | Création Numérique | `1.png` | 90f / 3s |
-| `design-graphique` | Design Graphique & UI | `2.png` | 90f / 3s |
-| `production-av` | Production Audiovisuelle | `3.png` | 90f / 3s |
-| `motion-design` | Motion Design | `4.png` | 90f / 3s |
-| `narration-interactive` | Narration Interactive | `5.png` | 90f / 3s |
-| `hard-skills` | Hard Skills | `6.png` | 90f / 3s |
-| `debouches` | Débouchés | — | 90f / 3s |
+| `intro` | BUT MMI | — | 90f · 3s |
+| `creation-numerique` | Création Numérique | `1.png` | 90f · 3s |
+| `design-graphique` | Design Graphique & UI | `2.png` | 90f · 3s |
+| `production-av` | Production Audiovisuelle | `3.png` | 90f · 3s |
+| `motion-design` | Motion Design | `4.png` | 90f · 3s |
+| `narration-interactive` | Narration Interactive | `5.png` | 90f · 3s |
+| `hard-skills` | Hard Skills | `6.png` | 90f · 3s |
+| `debouches` | Débouchés | — | 90f · 3s |
 
-> **Total : 720 frames @ 30fps = 24 secondes.**
-> Ajouter une section = une entrée dans le tableau. La durée totale se recalcule automatiquement.
+> Total : **720 frames @ 30fps = 24 secondes.** Durée totale calculée dynamiquement via `mmiData.reduce()`.
 
----
+### AI-Augmented Development
 
-## AI-AUGMENTED WORKFLOW
-
-Ce projet a été orchestré via **Claude Code** (CLI Anthropic), opérant directement dans le terminal sur la base de prompts créatifs à haute intention.
+Le développement est orchestré via **Claude Code CLI** (Anthropic) opérant directement dans le terminal.
 
 ```
-Intention créative (brief textuel)
+Brief créatif (intention textuelle)
         ↓
-Claude Code CLI (orchestration, refactoring, debug)
+Claude Code CLI  →  édition de fichiers, refactoring, debug TypeScript
         ↓
-Remotion React Engine (rendu frame-accurate)
+Remotion React Engine  →  rendu frame-accurate
         ↓
-Export MP4 / WebM (pipeline ffmpeg)
+Export MP4 via pipeline ffmpeg embarqué
 ```
 
-L'approche élimine le fossé entre *ce que l'on imagine* et *ce que le code produit*. Le développeur devient directeur artistique ; le LLM, exécutant technique.
-
-Ce workflow est identique à celui utilisé pour le développement du plugin Photoshop **[X-FLTR](https://github.com/myooooooo/x-fltr)**.
+- Itération design → code sans friction contextuelle
+- Correction d'erreurs TypeScript en boucle serrée
+- Refactoring architectural sur instruction naturelle
+- Le développeur opère au niveau de l'intention ; le CLI au niveau de l'exécution
 
 ---
 
 ## STACK TECHNIQUE
 
-| Couche | Technologie | Rôle |
+| Couche | Technologie | Version |
 |---|---|---|
-| **Moteur vidéo** | [Remotion 4.0](https://remotion.dev) | Video as Code — rendu React → MP4 |
-| **UI Framework** | React 19 + TypeScript 5 | Composants typés, `noUnusedLocals: true` |
-| **Animations** | `spring()`, `interpolate()` | Physique réaliste, easing Power4.out |
-| **Assets** | `staticFile()` + `Img` | Chargement asynchrone garanti avant rendu |
-| **Audio** | `<Audio>` Remotion | Synchronisation music.mp3 frame-accurate |
-| **Orchestration** | Claude Code CLI | Génération, refactoring, debug en terminal |
+| Moteur vidéo | [Remotion](https://remotion.dev) | 4.0.428 |
+| UI Framework | React | 19 |
+| Langage | TypeScript | 5 — `noUnusedLocals: true` |
+| Styling | Tailwind CSS | v4 |
+| Animations | `spring()` · `interpolate()` | Remotion built-in |
+| Assets | `staticFile()` · `<Img>` | Chargement garanti pré-rendu |
+| Audio | `<Audio>` · `useAudioData` | Remotion built-in |
+| Orchestration | Claude Code CLI | — |
 
 ---
 
-## KEY FEATURES
+## FONCTIONNALITÉS CLÉS
 
 ### Dynamic HUD
-Deux composants d'interface affichent les métadonnées de rendu en temps réel :
 
-- **`DebugBanner`** — barre supérieure : numéro de section, ID, type de transition suivante, frame counter (`F:0247`), progression globale
-- **`TechHUD`** — strip latérale gauche : compteur `01/08`, titre de section dynamique, barre de progression verticale avec curseur glow
+Deux composants UI injectent les métadonnées de rendu en temps réel, frame par frame :
 
-### Visual Identity
-Identité visuelle Neon-Tech Haute Fidélité :
+- **`DebugBanner`** — barre supérieure fixe
+  - Numéro et ID de la section active
+  - Type de transition à venir (`WHIP` / `VERTICAL` / `ZOOM`)
+  - Frame counter absolu (`F:0247`)
+  - Progression globale en pourcentage
+- **`TechHUD`** — strip latérale gauche
+  - Compteur de section (`01/08`) avec glow `#BC13FE`
+  - Titre de section mis à jour dynamiquement à chaque slide
+  - Barre de progression verticale avec curseur animé
 
-| Token | Valeur | Usage |
-|---|---|---|
-| `--violet` | `#BC13FE` | Accent principal, glows, borders |
-| `--bg` | `#050505` | Background profond |
-| `--white` | `#FFFFFF` | Titres H1, contraste maximal |
-| `--white-dim` | `rgba(255,255,255,0.72)` | Corps de texte, descriptions |
+### Asynchronous Media Management
 
-### 4-Layout System
-Les sections alternent automatiquement entre 4 compositions :
+Les assets photographiques et audio sont gérés via l'API native Remotion :
 
-| Index % 4 | Layout | Description |
-|---|---|---|
-| `0` | Centered | Texte centré, visuel en fond subtil |
-| `1` | Left | Texte gauche · Image droite |
-| `2` | Right | Image gauche · Texte droite |
-| `3` | Fullscreen | Editorial, titre 130px overflowing |
+- `staticFile(path)` — résolution des chemins depuis `public/` avec garantie de disponibilité avant le rendu
+- `<Img>` — wrappeur Remotion sur `<img>` natif : bloque le rendu de la frame jusqu'au chargement complet de l'asset, éliminant les frames vides
+- `<Audio src={staticFile('music.mp3')} volume={0.5} />` — synchronisation audio frame-accurate sans dérive temporelle
 
-> Les sections avec image overrident `fullscreen → left` et `centered → right` pour garantir la visibilité de l'asset.
+### Audio-Réactivité
 
-### Transition Engine
-3 types de transitions déterministes, cycliques, durée exacte de 15 frames avec easing `Power4.out` :
+Analyse de spectre en temps réel via le hook `useAudioData` de Remotion :
+
+```ts
+// Simulation BPM 128 — src/utils/beat.ts
+export const BPM = 128;
+const framesPerBeat = (fps * 60) / BPM; // 14.06f @ 30fps
+
+export function getKickPulse(frame: number, fps: number): number {
+  const beatFrame = frame % framesPerBeat;
+  return spring({ frame: beatFrame, fps, config: { stiffness: 400, damping: 10 } });
+}
+```
+
+Les visuels procéduraux (waveform, formes géométriques) réagissent à l'amplitude du signal au fil des frames.
+
+### Procedural Transitions
+
+La logique de transition est calculée automatiquement par le moteur à partir de l'index de section, sans déclaration manuelle :
 
 ```ts
 // src/utils/transitions.ts
 const TRANSITION_ORDER: TransitionType[] = ['whip', 'vertical', 'zoom', 'whip', 'vertical', 'zoom', 'whip'];
+export const TRANSITION_DURATION = 15; // frames — exact, sans interpolation approximative
+
 const power4out = (t: number) => 1 - Math.pow(1 - t, 4);
 ```
 
-### Light Sweep
-Micro-animation atmosphérique : trait de lumière vertical (`#BC13FE` → blanc → `#BC13FE`) balayant l'écran toutes les 4 secondes (120 frames), durée 28 frames.
+- **Whip** — déplacement horizontal haute vélocité (`x`)
+- **Vertical** — arc vertical (`y`)
+- **Zoom** — pulse de scale centré sur le viewport
+
+### 4-Layout System
+
+Les sections alternent entre quatre compositions de mise en page, déterminées par `index % 4` :
+
+| Index % 4 | Layout | Composition |
+|---|---|---|
+| `0` | `centered` | Texte centré · visuel en fond atténué |
+| `1` | `left` | Texte gauche · image plein cadre droite |
+| `2` | `right` | Image plein cadre gauche · texte droite |
+| `3` | `fullscreen` | Titre 130px · débordement éditorial |
+
+> **Override automatique** : les sections avec image en layout `fullscreen` ou `centered` basculent vers `left` / `right` pour garantir la visibilité de l'asset.
 
 ---
 
-## ARCHITECTURE
+## STRUCTURE DU PROJET
 
 ```
 src/
-├── mmiData.ts              # Source de vérité — sections, images, durées
-├── Root.tsx                # Enregistrement composition Remotion
-├── Composition.tsx         # Orchestrateur principal + Audio
+├── mmiData.ts                # Source de vérité — structure complète de la vidéo
+├── Root.tsx                  # Enregistrement de la composition Remotion
+├── Composition.tsx           # Orchestrateur principal + injection Audio
 ├── components/
-│   ├── BlueprintSection.tsx  # Dispatcher 4-layouts + TextBlock
-│   ├── SectionVisual.tsx     # Router visuel (ImageCard / Grid / Waveform / Geo)
-│   ├── AnimatedTag.tsx       # Badge neon avec spring + glow
-│   ├── TechHUD.tsx           # Strip HUD latérale gauche
+│   ├── BlueprintSection.tsx  # Dispatcher de layouts + TextBlock animé
+│   ├── SectionVisual.tsx     # Router visuel (ImageCard · Grid · Waveform · Geo)
+│   ├── AnimatedTag.tsx       # Badge spring avec glow neon
+│   ├── TechHUD.tsx           # HUD latéral gauche
 │   ├── DebugBanner.tsx       # Barre de debug supérieure
-│   ├── GridBackground.tsx    # Grille architecturale avec parallaxe
-│   ├── CameraRig.tsx         # Translate camera (x, y)
-│   ├── LightSweep.tsx        # Balayage lumineux toutes les 4s
-│   └── Scanlines.tsx         # CRT scanlines overlay
+│   ├── GridBackground.tsx    # Grille architecturale + parallaxe caméra
+│   ├── CameraRig.tsx         # Translate x/y de la caméra
+│   ├── LightSweep.tsx        # Balayage lumineux périodique (120f)
+│   └── Scanlines.tsx         # Overlay CRT scanlines
 └── utils/
-    ├── transitions.ts        # computeCamera, getLayout, Power4.out
-    └── beat.ts               # Simulation BPM 128 (getKickPulse)
+    ├── transitions.ts        # computeCamera · getLayout · Power4.out
+    └── beat.ts               # Simulation BPM · getKickPulse
 
 public/
-├── 1.png – 6.png            # Assets photo par section
-└── music.mp3                # Soundtrack (volume 0.5)
+├── 1.png – 6.png             # Assets photo par section
+└── music.mp3                 # Soundtrack (volume normalisé 0.5)
 ```
 
 ---
 
-## SETUP
+## SETUP LOCAL
 
 ```bash
-# 1. Installer les dépendances
+# Installer les dépendances
 npm install
 
-# 2. Lancer le Studio Remotion (preview interactif)
+# Lancer le Studio Remotion (preview interactif, http://localhost:3000)
 npm run dev
 
-# 3. Rendu final (MP4)
-npx remotion render src/index.ts MMI-CreationNumerique out/mmi.mp4
-
-# 4. Mettre à jour Remotion
-npx remotion upgrade
+# Exporter la vidéo finale en MP4
+npm run build
 ```
 
-> Le Studio est accessible sur `http://localhost:3000`. Navigation frame par frame, prévisualisation en temps réel.
+---
+
+## DESIGN SYSTEM
+
+| Token | Valeur | Rôle |
+|---|---|---|
+| `--violet` | `#BC13FE` | Accent principal · glows · borders |
+| `--bg` | `#050505` | Background profond |
+| `--white` | `#FFFFFF` | Titres H1 · contraste maximal |
+| `--text` | `rgba(255,255,255,0.72)` | Corps · descriptions |
+| `--text-dim` | `rgba(255,255,255,0.35)` | Labels · métadonnées HUD |
 
 ---
 
-## X-FLTR CONNECTION
-
-Ce projet partage son workflow de développement avec **X-FLTR**, un plugin Photoshop de filtrage colorimétrique avancé développé avec la même approche AI-Augmented (Claude Code CLI + TypeScript).
-
-→ [github.com/myooooooo/x-fltr](https://github.com/myooooooo/x-fltr)
-
-Les deux projets démontrent qu'une **symbiose LLM + développeur** permet de produire des outils créatifs professionnels à une vélocité impossible en workflow traditionnel.
-
----
-
-## LICENSE
-
-Remotion requiert une licence commerciale pour certaines entités. [Lire les conditions](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
-
-Le code applicatif (hors dépendances) est la propriété de son auteur.
-
----
-
-<sub>Built with Claude Code CLI · Remotion 4.0 · TypeScript · 2025</sub>
+<sub>Remotion 4.0 · React 19 · TypeScript 5 · Claude Code CLI · 2025</sub>
