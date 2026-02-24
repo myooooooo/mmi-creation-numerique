@@ -149,8 +149,8 @@ const RightLayout: React.FC<{ section: Section; index: number; localFrame: numbe
 const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: number; fps: number; width: number; height: number }> = (
   { section, index, localFrame, fps, width, height }
 ) => {
-  // Title size that deliberately overflows for magazine effect
-  const titleSize = 130;
+  // Adaptive size: long titles (>18 chars) scale down to stay readable
+  const titleSize = section.title.length > 18 ? 88 : section.title.length > 12 ? 110 : 130;
   const HUD = 52;
 
   const words = section.title.split(' ');
@@ -173,20 +173,32 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
         background: 'linear-gradient(105deg, rgba(5,5,5,0.95) 50%, rgba(5,5,5,0.3) 100%)',
       }} />
 
-      {/* Title — 200px, bottom-left, deliberately overflows right edge */}
+      {/* Reading overlay — dark rectangle isolates text from background */}
+      <div style={{
+        position: 'absolute',
+        bottom: 80,
+        left: 0,
+        right: 0,
+        height: titleSize * words.length * 1.1 + 60,
+        background: 'rgba(0,0,0,0.40)',
+        opacity: textO,
+      }} />
+
+      {/* Title — bottom-left, white on black, max contrast */}
       <div style={{
         position: 'absolute',
         bottom: 100,
         left: HUD + 40,
-        right: 0,
-        overflow: 'visible',
+        right: 60,
+        overflow: 'hidden',
         opacity: textO,
       }}>
         <div style={{
           fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-          fontWeight: 900, fontSize: titleSize, lineHeight: 0.85,
-          letterSpacing: '-0.04em', color: '#FFFFFF',
-          whiteSpace: 'nowrap', overflow: 'visible',
+          fontWeight: 900, fontSize: titleSize, lineHeight: 0.88,
+          letterSpacing: '-0.03em', color: '#FFFFFF',
+          textShadow: '0 2px 0 #000, 2px 0 0 #000, -2px 0 0 #000, 0 -2px 0 #000, 0 0 24px rgba(0,0,0,0.95)',
+          whiteSpace: 'normal', overflow: 'visible',
         }}>
           {words.map((word, wi) => {
             const ws = spring({ frame: localFrame - wi * 8, fps, config: { stiffness: 220, damping: 26 } });
@@ -194,7 +206,7 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
               <span key={wi} style={{
                 display: 'inline-block',
                 transform: `translateY(${interpolate(ws, [0, 1], [60, 0])}px)`,
-                opacity: ws, marginRight: '0.15em',
+                opacity: ws, marginRight: '0.18em',
               }}>
                 {word}
               </span>
