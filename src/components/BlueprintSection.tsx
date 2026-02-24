@@ -91,11 +91,12 @@ const CenteredLayout: React.FC<{ section: Section; index: number; localFrame: nu
   { section, index, localFrame, fps, width, height }
 ) => {
   const titleSize = section.title.length > 12 ? 84 : 108;
+  const bgOpacity = section.image ? 0.18 : 0.07;
   return (
     <div style={{ position: 'relative', width, height, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 80px', boxSizing: 'border-box' }}>
-      {/* Background visual — very faint */}
-      <div style={{ position: 'absolute', inset: 0, opacity: 0.07, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <SectionVisual section={section} localFrame={localFrame} fps={fps} w={width * 0.7} h={height * 0.7} />
+      {/* Background visual */}
+      <div style={{ position: 'absolute', inset: 0, opacity: bgOpacity, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <SectionVisual section={section} localFrame={localFrame} fps={fps} w={width * 0.65} h={height * 0.65} />
       </div>
       <TextBlock section={section} index={index} localFrame={localFrame} fps={fps} titleSize={titleSize} maxW={1000} align="center" />
     </div>
@@ -163,8 +164,8 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
 
   return (
     <div style={{ position: 'relative', width, height, overflow: 'hidden' }}>
-      {/* Full-bleed background visual */}
-      <div style={{ position: 'absolute', inset: 0, opacity: bgO * 0.12 }}>
+      {/* Full-bleed background visual — higher opacity for photo sections */}
+      <div style={{ position: 'absolute', inset: 0, opacity: bgO * (section.image ? 0.28 : 0.12) }}>
         <SectionVisual section={section} localFrame={localFrame} fps={fps} w={width} h={height} />
       </div>
 

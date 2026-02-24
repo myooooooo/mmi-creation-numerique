@@ -1,4 +1,4 @@
-import { interpolate, spring, useCurrentFrame } from 'remotion';
+import { Img, interpolate, spring, staticFile, useCurrentFrame } from 'remotion';
 import { Section } from '../mmiData';
 import { getKickPulse } from '../utils/beat';
 
@@ -222,10 +222,37 @@ const JsonDataBlock: React.FC<{ section: Section; localFrame: number; w: number 
   );
 };
 
+// ── Image Card ────────────────────────────────────────────────────────────────
+const ImageCard: React.FC<{ src: string; w: number; h: number; localFrame: number }> = ({
+  src, w, h, localFrame,
+}) => {
+  const fadeIn = interpolate(localFrame, [0, 20], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const scale = interpolate(localFrame, [0, 40], [1.04, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  return (
+    <div style={{
+      width: w, height: h,
+      borderRadius: 20, overflow: 'hidden',
+      border: '1.5px solid #BC13FE',
+      boxShadow: '0 0 22px rgba(188,19,254,0.40), 0 0 60px rgba(188,19,254,0.14)',
+      opacity: fadeIn, flexShrink: 0,
+    }}>
+      <Img
+        src={staticFile(src)}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transform: `scale(${scale})`, transformOrigin: 'center center' }}
+      />
+    </div>
+  );
+};
+
 // ── Router ────────────────────────────────────────────────────────────────────
 export const SectionVisual: React.FC<SectionVisualProps> = ({
   section, localFrame, fps, w, h,
 }) => {
+  // Image takes priority — sections 1-6 have a photo
+  if (section.image) {
+    return <ImageCard src={section.image} w={w} h={h} localFrame={localFrame} />;
+  }
+  // No image: fallback to data-driven visuals
   switch (section.id) {
     case 'design-graphique':
     case 'hard-skills':

@@ -22,12 +22,25 @@ export const TechHUD: React.FC = () => {
       borderRight: '1px solid rgba(188,19,254,0.15)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12,
     }}>
+      {/* Section counter */}
       <div style={{
         fontFamily: '"Helvetica Neue", sans-serif', fontSize: 12, fontWeight: 600,
         color: '#BC13FE', letterSpacing: '0.08em',
         writingMode: 'vertical-rl', transform: 'rotate(180deg)',
+        textShadow: '0 0 10px #BC13FE',
       }}>
         {String(si + 1).padStart(2, '0')}/{mmiData.length}
+      </div>
+
+      {/* Section title — updates dynamically */}
+      <div style={{
+        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 9, fontWeight: 400,
+        color: 'rgba(255,255,255,0.45)', letterSpacing: '0.07em',
+        writingMode: 'vertical-rl', transform: 'rotate(180deg)',
+        maxHeight: 72, overflow: 'hidden',
+        whiteSpace: 'nowrap',
+      }}>
+        {mmiData[si].title.toUpperCase()}
       </div>
 
       {/* Track */}

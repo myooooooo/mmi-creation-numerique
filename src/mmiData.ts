@@ -4,6 +4,7 @@ export interface Section {
   subtitle: string;
   durationInFrames: number;
   tags: string[];
+  image: string;
 }
 
 export const mmiData: Section[] = [
@@ -13,6 +14,7 @@ export const mmiData: Section[] = [
     subtitle: "Métiers du Multimédia & de l'Internet — Bac+3 / Grade Licence",
     durationInFrames: 90,
     tags: ['Multimédia', 'Internet', 'Bac+3'],
+    image: '1.png',
   },
   {
     id: 'creation-numerique',
@@ -20,6 +22,7 @@ export const mmiData: Section[] = [
     subtitle: 'Expression artistique & maîtrise technique des outils visuels et sonores',
     durationInFrames: 90,
     tags: ['Artistique', 'Technique', 'Visuel'],
+    image: '2.png',
   },
   {
     id: 'design-graphique',
@@ -27,6 +30,7 @@ export const mmiData: Section[] = [
     subtitle: 'Identités visuelles · Typographie · Interfaces web & mobile',
     durationInFrames: 90,
     tags: ['Design', 'UI', 'Typographie'],
+    image: '3.png',
   },
   {
     id: 'production-av',
@@ -34,6 +38,7 @@ export const mmiData: Section[] = [
     subtitle: 'Prise de vue · Montage · Sound Design · Post-Production',
     durationInFrames: 90,
     tags: ['Vidéo', 'Son', 'Post-Prod'],
+    image: '4.png',
   },
   {
     id: 'motion-design',
@@ -41,6 +46,7 @@ export const mmiData: Section[] = [
     subtitle: 'Animation graphique 2D & 3D — publicité, génériques, identité animée',
     durationInFrames: 90,
     tags: ['Motion', '2D/3D', 'Animation'],
+    image: '5.png',
   },
   {
     id: 'narration-interactive',
@@ -48,6 +54,7 @@ export const mmiData: Section[] = [
     subtitle: 'Storytelling numérique — XR, installations interactives, UX narrative',
     durationInFrames: 90,
     tags: ['Storytelling', 'XR', 'Interactif'],
+    image: '6.png',
   },
   {
     id: 'hard-skills',
@@ -55,6 +62,7 @@ export const mmiData: Section[] = [
     subtitle: 'Suite Adobe · Figma · Blender · Cinema 4D · HTML/CSS',
     durationInFrames: 90,
     tags: ['Adobe', 'Figma', 'Blender', 'HTML'],
+    image: '',
   },
   {
     id: 'debouches',
@@ -62,6 +70,7 @@ export const mmiData: Section[] = [
     subtitle: 'Graphiste · UI Designer · Motion Designer · DA · Webdesigner',
     durationInFrames: 90,
     tags: ['Graphiste', 'UI Designer', 'Motion'],
+    image: '',
   },
 ];
 
