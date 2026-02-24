@@ -41,13 +41,13 @@ const LayoutGridVisual: React.FC<{ localFrame: number; fps: number; w: number; h
         return (
           <g key={i}>
             <rect x={px} y={py} width={pw} height={ph}
-              fill="rgba(138,43,226,0.05)" stroke="#8A2BE2"
+              fill="rgba(188,19,254,0.05)" stroke="#BC13FE"
               strokeWidth={0.8} strokeDasharray={perim} strokeDashoffset={dash}
               filter="url(#grid-glow)" />
             <text x={px + pw / 2} y={py + ph / 2}
               textAnchor="middle" dominantBaseline="middle"
               fontFamily='"Helvetica Neue", Helvetica, sans-serif'
-              fontSize={Math.min(9, ph * 0.2)} fill="#8A2BE2"
+              fontSize={Math.min(9, ph * 0.2)} fill="#BC13FE"
               letterSpacing="0.12em" opacity={labelOpacity * 0.7}>
               {z.label}
             </text>
@@ -82,7 +82,7 @@ const WaveformVisual: React.FC<{ localFrame: number; fps: number; w: number; h: 
 
   return (
     <svg width={w} height={h} style={{ opacity: fadeIn }}>
-      <path d={buildPath(0.17, amp2, Math.PI)} stroke="rgba(138,43,226,0.35)" strokeWidth={1} fill="none" />
+      <path d={buildPath(0.17, amp2, Math.PI)} stroke="rgba(188,19,254,0.35)" strokeWidth={1} fill="none" />
       <path d={buildPath(0.17, amp, 0)} stroke="rgba(255,255,255,0.75)" strokeWidth={1.5} fill="none" />
       <line x1={0} y1={cy} x2={w} y2={cy} stroke="rgba(255,255,255,0.08)" strokeWidth={0.5} />
     </svg>
@@ -119,7 +119,7 @@ const GeometricVisual: React.FC<{ localFrame: number; fps: number; w: number; h:
           <rect
             x={cx - size / 2} y={cy - size / 2}
             width={size} height={size}
-            fill="none" stroke="#8A2BE2" strokeWidth={1.5}
+            fill="none" stroke="#BC13FE" strokeWidth={1.5}
             transform={`rotate(${rot + 45}, ${cx}, ${cy})`}
             filter="url(#geo-glow)" opacity={0.8}
           />
@@ -132,7 +132,7 @@ const GeometricVisual: React.FC<{ localFrame: number; fps: number; w: number; h:
         const oy = cy + Math.sin(t) * ORBIT_R;
         const r = 10 + kick * 8;
         return (
-          <circle cx={ox} cy={oy} r={r} fill="#8A2BE2"
+          <circle cx={ox} cy={oy} r={r} fill="#BC13FE"
             filter="url(#geo-glow)" opacity={0.7} />
         );
       })()}
@@ -145,7 +145,7 @@ const GeometricVisual: React.FC<{ localFrame: number; fps: number; w: number; h:
           <rect
             x={cx - size / 2} y={cy - size / 2}
             width={size} height={size}
-            fill="none" stroke="rgba(138,43,226,0.25)" strokeWidth={0.8}
+            fill="none" stroke="rgba(188,19,254,0.25)" strokeWidth={0.8}
             transform={`rotate(${rot}, ${cx}, ${cy})`}
           />
         );
@@ -153,7 +153,7 @@ const GeometricVisual: React.FC<{ localFrame: number; fps: number; w: number; h:
 
       {/* Center dot pulse */}
       <circle cx={cx} cy={cy} r={4 + kick * 12} fill="none"
-        stroke="#8A2BE2" strokeWidth={1} opacity={0.5 + kick * 0.4} />
+        stroke="#BC13FE" strokeWidth={1} opacity={0.5 + kick * 0.4} />
       <circle cx={cx} cy={cy} r={3} fill="rgba(255,255,255,0.9)" />
     </svg>
   );
@@ -198,7 +198,7 @@ const JsonDataBlock: React.FC<{ section: Section; localFrame: number; w: number 
                   ? 'rgba(255,255,255,0.2)'
                   : isKey
                     ? 'rgba(255,255,255,0.4)'
-                    : '#8A2BE2',
+                    : '#BC13FE',
               whiteSpace: 'pre',
             }}
           >

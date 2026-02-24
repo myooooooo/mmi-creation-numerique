@@ -19,27 +19,27 @@ export const TechHUD: React.FC = () => {
       position: 'absolute', left: 0, top: 0, width: 52, height: '100%',
       zIndex: 20,
       background: 'rgba(5,5,5,0.8)',
-      borderRight: '1px solid rgba(138,43,226,0.15)',
+      borderRight: '1px solid rgba(188,19,254,0.15)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12,
     }}>
       <div style={{
         fontFamily: '"Helvetica Neue", sans-serif', fontSize: 8, fontWeight: 600,
-        color: '#8A2BE2', letterSpacing: '0.08em',
+        color: '#BC13FE', letterSpacing: '0.08em',
         writingMode: 'vertical-rl', transform: 'rotate(180deg)',
       }}>
         {String(si + 1).padStart(2, '0')}/{mmiData.length}
       </div>
 
       {/* Track */}
-      <div style={{ position: 'relative', width: 2, height: TRACK_H, background: 'rgba(138,43,226,0.12)' }}>
+      <div style={{ position: 'relative', width: 2, height: TRACK_H, background: 'rgba(188,19,254,0.12)' }}>
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: filledH,
-          background: 'linear-gradient(to bottom, #8A2BE2, rgba(138,43,226,0.4))',
+          background: 'linear-gradient(to bottom, #BC13FE, rgba(188,19,254,0.4))',
         }} />
         <div style={{
           position: 'absolute', top: filledH - 3, left: -2,
           width: 6, height: 6, borderRadius: '50%',
-          background: '#8A2BE2', boxShadow: '0 0 8px #8A2BE2',
+          background: '#BC13FE', boxShadow: '0 0 8px #BC13FE',
         }} />
       </div>
 

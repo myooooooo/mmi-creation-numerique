@@ -19,7 +19,7 @@ export const DebugBanner: React.FC = () => {
       position: 'absolute', top: 0, left: 0, right: 0, height: 26,
       zIndex: 30,
       background: 'rgba(5,5,5,0.92)',
-      borderBottom: '1px solid rgba(138,43,226,0.2)',
+      borderBottom: '1px solid rgba(188,19,254,0.2)',
       display: 'flex', alignItems: 'center',
       paddingLeft: 64, paddingRight: 40, gap: 0,
     }}>
@@ -27,7 +27,7 @@ export const DebugBanner: React.FC = () => {
       <div style={{
         position: 'absolute', left: 0, top: 0, bottom: 0,
         width: `${progress * 100}%`,
-        background: 'rgba(138,43,226,0.15)',
+        background: 'rgba(188,19,254,0.15)',
       }} />
 
       {[
@@ -38,12 +38,12 @@ export const DebugBanner: React.FC = () => {
         { v: `${Math.floor(progress * 100)}%` },
       ].map((item, i) => (
         <span key={i} style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-          {i > 0 && <span style={{ margin: '0 9px', color: 'rgba(138,43,226,0.4)', fontFamily: 'monospace', fontSize: 9 }}>//</span>}
+          {i > 0 && <span style={{ margin: '0 9px', color: 'rgba(188,19,254,0.4)', fontFamily: 'monospace', fontSize: 9 }}>//</span>}
           <span style={{
             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
             fontSize: 9,
             letterSpacing: '0.08em',
-            color: item.accent ? '#8A2BE2' : 'rgba(255,255,255,0.35)',
+            color: item.accent ? '#BC13FE' : 'rgba(255,255,255,0.35)',
             fontWeight: item.accent ? 600 : 400,
           }}>
             {item.v}

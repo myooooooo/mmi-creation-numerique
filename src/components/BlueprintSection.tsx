@@ -27,10 +27,11 @@ const TextBlock: React.FC<TextBlockProps> = ({
       {/* Eyebrow */}
       <div style={{
         fontFamily: '"Helvetica Neue", sans-serif', fontSize: 11, fontWeight: 600,
-        letterSpacing: '0.2em', color: '#8A2BE2',
+        letterSpacing: '0.2em', color: '#BC13FE',
         marginBottom: 12, opacity: eyeS,
         transform: `translateY(${interpolate(eyeS, [0, 1], [10, 0])}px)`,
         textAlign: align,
+        textShadow: '0 0 12px #BC13FE, 0 0 25px rgba(188,19,254,0.35)',
       }}>
         {String(index + 1).padStart(2, '0')} // {mmiData.length}
       </div>
@@ -59,15 +60,16 @@ const TextBlock: React.FC<TextBlockProps> = ({
       {/* Accent rule */}
       <div style={{
         height: 2, width: lineW,
-        background: 'linear-gradient(to right, #8A2BE2, rgba(138,43,226,0.1))',
+        background: 'linear-gradient(to right, #BC13FE, rgba(188,19,254,0.1))',
         borderRadius: 1, marginBottom: 18,
         alignSelf: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
+        boxShadow: '0 0 8px #BC13FE, 0 0 16px rgba(188,19,254,0.3)',
       }} />
 
       {/* Subtitle */}
       <div style={{
-        fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 13,
-        lineHeight: 1.7, color: 'rgba(255,255,255,0.48)',
+        fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 17,
+        lineHeight: 1.7, color: 'rgba(255,255,255,0.72)',
         opacity: subO, marginBottom: 28, textAlign: align,
       }}>
         {section.subtitle}
@@ -87,7 +89,7 @@ const TextBlock: React.FC<TextBlockProps> = ({
 const CenteredLayout: React.FC<{ section: Section; index: number; localFrame: number; fps: number; width: number; height: number }> = (
   { section, index, localFrame, fps, width, height }
 ) => {
-  const titleSize = section.title.length > 12 ? 110 : 140;
+  const titleSize = section.title.length > 12 ? 84 : 108;
   return (
     <div style={{ position: 'relative', width, height, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 80px', boxSizing: 'border-box' }}>
       {/* Background visual — very faint */}
@@ -106,7 +108,7 @@ const LeftLayout: React.FC<{ section: Section; index: number; localFrame: number
   const HUD = 52; const PAD = 36; const GAP = 48;
   const leftW = Math.floor((width - HUD - PAD * 2 - GAP) * 0.52);
   const rightW = width - HUD - PAD * 2 - GAP - leftW;
-  const titleSize = section.title.length > 18 ? 56 : section.title.length > 11 ? 70 : 86;
+  const titleSize = section.title.length > 18 ? 50 : section.title.length > 11 ? 62 : 76;
   const visO = interpolate(localFrame, [16, 36], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   return (
@@ -128,7 +130,7 @@ const RightLayout: React.FC<{ section: Section; index: number; localFrame: numbe
   const HUD = 52; const PAD = 36; const GAP = 48;
   const rightW = Math.floor((width - HUD - PAD * 2 - GAP) * 0.50);
   const leftW = width - HUD - PAD * 2 - GAP - rightW;
-  const titleSize = section.title.length > 18 ? 56 : section.title.length > 11 ? 70 : 86;
+  const titleSize = section.title.length > 18 ? 50 : section.title.length > 11 ? 62 : 76;
   const visO = interpolate(localFrame, [16, 36], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   return (
@@ -148,7 +150,7 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
   { section, index, localFrame, fps, width, height }
 ) => {
   // Title size that deliberately overflows for magazine effect
-  const titleSize = 190;
+  const titleSize = 130;
   const HUD = 52;
 
   const words = section.title.split(' ');
@@ -204,11 +206,11 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
       {/* Bottom strip: eyebrow + rule + subtitle + tags */}
       <div style={{ position: 'absolute', bottom: 36, left: HUD + 40, right: 60, opacity: subO }}>
         {/* Horizontal rule */}
-        <div style={{ height: 1, width: lineW, background: '#8A2BE2', marginBottom: 14 }} />
+        <div style={{ height: 1, width: lineW, background: '#BC13FE', marginBottom: 14, boxShadow: '0 0 8px #BC13FE, 0 0 16px rgba(188,19,254,0.3)' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{
-            fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 12,
-            color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, maxWidth: '60%',
+            fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 16,
+            color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: '60%',
           }}>
             {section.subtitle}
           </div>
@@ -224,7 +226,8 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
       <div style={{
         position: 'absolute', top: 36, right: 52,
         fontFamily: '"Helvetica Neue", sans-serif', fontSize: 11, fontWeight: 600,
-        letterSpacing: '0.15em', color: '#8A2BE2', opacity: textO,
+        letterSpacing: '0.15em', color: '#BC13FE', opacity: textO,
+        textShadow: '0 0 12px #BC13FE, 0 0 25px rgba(188,19,254,0.35)',
       }}>
         {String(index + 1).padStart(2, '0')} // {mmiData.length}
       </div>
