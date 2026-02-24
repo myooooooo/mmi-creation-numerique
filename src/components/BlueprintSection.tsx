@@ -257,7 +257,13 @@ export const BlueprintSection: React.FC<Props> = ({ section, index, startFrame }
   const SLIDE_DELAY = index === 0 ? 0 : TRANSITION_DURATION;
   const localFrame = Math.max(0, globalFrame - startFrame - SLIDE_DELAY);
 
-  const layout = getLayout(index);
+  // Sections with an image must show in a side panel (not buried as a faint background).
+  // Override: image + fullscreen → left | image + centered → right
+  let layout = getLayout(index);
+  if (section.image) {
+    if (layout === 'fullscreen') layout = 'left';
+    if (layout === 'centered')   layout = 'right';
+  }
 
   const sharedProps = { section, index, localFrame, fps, width, height };
 
