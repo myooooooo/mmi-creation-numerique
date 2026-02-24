@@ -16,7 +16,7 @@ export const DebugBanner: React.FC = () => {
 
   return (
     <div style={{
-      position: 'absolute', top: 0, left: 0, right: 0, height: 26,
+      position: 'absolute', top: 0, left: 0, right: 0, height: 34,
       zIndex: 30,
       background: 'rgba(5,5,5,0.92)',
       borderBottom: '1px solid rgba(188,19,254,0.2)',
@@ -41,7 +41,7 @@ export const DebugBanner: React.FC = () => {
           {i > 0 && <span style={{ margin: '0 9px', color: 'rgba(188,19,254,0.4)', fontFamily: 'monospace', fontSize: 9 }}>//</span>}
           <span style={{
             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSize: 9,
+            fontSize: 13,
             letterSpacing: '0.08em',
             color: item.accent ? '#BC13FE' : 'rgba(255,255,255,0.35)',
             fontWeight: item.accent ? 600 : 400,

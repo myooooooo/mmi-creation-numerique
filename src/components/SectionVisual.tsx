@@ -30,6 +30,11 @@ const LayoutGridVisual: React.FC<{ localFrame: number; fps: number; w: number; h
           <feGaussianBlur stdDeviation="1.5" result="b" />
           <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
+        {/* Technical grid fill — horizontal scanlines every 4px */}
+        <pattern id="zone-grid" width="6" height="6" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="6" y2="0" stroke="rgba(188,19,254,0.18)" strokeWidth="0.5" />
+          <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(188,19,254,0.10)" strokeWidth="0.5" />
+        </pattern>
       </defs>
       {ZONES.map((z, i) => {
         const px = z.x * w; const py = z.y * h;
@@ -40,15 +45,19 @@ const LayoutGridVisual: React.FC<{ localFrame: number; fps: number; w: number; h
         const labelOpacity = interpolate(s, [0.6, 1], [0, 1]);
         return (
           <g key={i}>
+            {/* Grid texture fill — "screen waiting for data" */}
             <rect x={px} y={py} width={pw} height={ph}
-              fill="rgba(188,19,254,0.05)" stroke="#BC13FE"
+              fill="url(#zone-grid)" opacity={labelOpacity * 0.55} />
+            {/* Zone border trace-in */}
+            <rect x={px} y={py} width={pw} height={ph}
+              fill="none" stroke="#BC13FE"
               strokeWidth={0.8} strokeDasharray={perim} strokeDashoffset={dash}
               filter="url(#grid-glow)" />
             <text x={px + pw / 2} y={py + ph / 2}
               textAnchor="middle" dominantBaseline="middle"
               fontFamily='"Helvetica Neue", Helvetica, sans-serif'
-              fontSize={Math.min(9, ph * 0.2)} fill="#BC13FE"
-              letterSpacing="0.12em" opacity={labelOpacity * 0.7}>
+              fontSize={Math.min(13, ph * 0.28)} fill="#BC13FE"
+              letterSpacing="0.12em" opacity={labelOpacity * 0.8}>
               {z.label}
             </text>
           </g>
@@ -186,19 +195,22 @@ const JsonDataBlock: React.FC<{ section: Section; localFrame: number; w: number 
       {lines.map((line, i) => {
         const lineOpacity = Math.min(1, Math.max(0, (localFrame - i * 4) / 10));
         const isKey = line.includes('"') && line.includes(':');
+        const isBracket = line.trim() === '{' || line.trim() === '}';
+        const isValue = !isBracket && !isKey;
         return (
           <div
             key={i}
             style={{
               fontFamily: '"Courier New", Courier, monospace',
-              fontSize: 11,
-              lineHeight: '20px',
+              fontSize: 16,
+              lineHeight: '30px',
               opacity: lineOpacity * 0.85,
-              color: (line.trim() === '{' || line.trim() === '}')
+              color: isBracket
                   ? 'rgba(255,255,255,0.2)'
                   : isKey
-                    ? 'rgba(255,255,255,0.4)'
+                    ? 'rgba(255,255,255,0.55)'
                     : '#BC13FE',
+              textShadow: isValue ? '0 0 10px rgba(188,19,254,0.25)' : 'none',
               whiteSpace: 'pre',
             }}
           >

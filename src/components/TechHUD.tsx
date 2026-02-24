@@ -23,7 +23,7 @@ export const TechHUD: React.FC = () => {
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12,
     }}>
       <div style={{
-        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 8, fontWeight: 600,
+        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 12, fontWeight: 600,
         color: '#BC13FE', letterSpacing: '0.08em',
         writingMode: 'vertical-rl', transform: 'rotate(180deg)',
       }}>
@@ -44,7 +44,7 @@ export const TechHUD: React.FC = () => {
       </div>
 
       <div style={{
-        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 8,
+        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 12,
         color: 'rgba(255,255,255,0.3)', letterSpacing: '0.04em',
         writingMode: 'vertical-rl', transform: 'rotate(180deg)',
       }}>

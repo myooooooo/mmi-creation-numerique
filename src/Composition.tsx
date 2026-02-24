@@ -6,6 +6,7 @@ import { BlueprintSection } from './components/BlueprintSection';
 import { CameraRig } from './components/CameraRig';
 import { DebugBanner } from './components/DebugBanner';
 import { Scanlines } from './components/Scanlines';
+import { LightSweep } from './components/LightSweep';
 import { computeCamera } from './utils/transitions';
 
 export const MyComposition: React.FC = () => {
@@ -47,6 +48,9 @@ export const MyComposition: React.FC = () => {
       {/* Fixed chrome — not affected by camera or scale */}
       <TechHUD />
       <DebugBanner />
+
+      {/* Light sweep — atmospheric scan every 4s */}
+      <LightSweep />
 
       {/* Scanlines — always on top */}
       <Scanlines />

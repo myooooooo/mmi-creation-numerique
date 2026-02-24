@@ -26,7 +26,7 @@ const TextBlock: React.FC<TextBlockProps> = ({
 
       {/* Eyebrow */}
       <div style={{
-        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 11, fontWeight: 600,
+        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 15, fontWeight: 600,
         letterSpacing: '0.2em', color: '#BC13FE',
         marginBottom: 12, opacity: eyeS,
         transform: `translateY(${interpolate(eyeS, [0, 1], [10, 0])}px)`,
@@ -42,6 +42,7 @@ const TextBlock: React.FC<TextBlockProps> = ({
         fontWeight: 900, fontSize: titleSize, lineHeight: 0.9,
         letterSpacing: '-0.03em', color: '#FFFFFF',
         marginBottom: 20, overflow: 'visible', textAlign: align,
+        textShadow: '0 0 40px rgba(188,19,254,0.18)',
       }}>
         {words.map((word, wi) => {
           const ws = spring({ frame: localFrame - wi * 6, fps, config: { stiffness: 220, damping: 26, mass: 0.9 } });
@@ -68,8 +69,8 @@ const TextBlock: React.FC<TextBlockProps> = ({
 
       {/* Subtitle */}
       <div style={{
-        fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 17,
-        lineHeight: 1.7, color: 'rgba(255,255,255,0.72)',
+        fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 24,
+        lineHeight: 1.6, color: 'rgba(255,255,255,0.72)',
         opacity: subO, marginBottom: 28, textAlign: align,
       }}>
         {section.subtitle}
@@ -221,7 +222,7 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
         <div style={{ height: 1, width: lineW, background: '#BC13FE', marginBottom: 14, boxShadow: '0 0 8px #BC13FE, 0 0 16px rgba(188,19,254,0.3)' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{
-            fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 16,
+            fontFamily: '"Helvetica Neue", sans-serif', fontWeight: 300, fontSize: 22,
             color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, maxWidth: '60%',
           }}>
             {section.subtitle}
@@ -237,7 +238,7 @@ const FullscreenLayout: React.FC<{ section: Section; index: number; localFrame: 
       {/* Section index top-right */}
       <div style={{
         position: 'absolute', top: 36, right: 52,
-        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 11, fontWeight: 600,
+        fontFamily: '"Helvetica Neue", sans-serif', fontSize: 15, fontWeight: 600,
         letterSpacing: '0.15em', color: '#BC13FE', opacity: textO,
         textShadow: '0 0 12px #BC13FE, 0 0 25px rgba(188,19,254,0.35)',
       }}>

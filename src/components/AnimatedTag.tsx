@@ -19,33 +19,33 @@ export const AnimatedTag: React.FC<AnimatedTagProps> = ({ tag, frame, fps }) => 
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: 7,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 9,
-        paddingBottom: 9,
+        gap: 9,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 11,
+        paddingBottom: 11,
         borderRadius: 8,
         background: 'rgba(188,19,254,0.10)',
         border: `1px solid rgba(188,19,254,0.50)`,
-        boxShadow: `0 0 10px rgba(188,19,254,0.25), inset 0 0 8px rgba(188,19,254,0.06)`,
+        boxShadow: `0 0 10px rgba(188,19,254,0.20), inset 0 0 8px rgba(188,19,254,0.05)`,
         transform: `scale(${scale})`,
         opacity,
         transformOrigin: 'left center',
       }}
     >
       <div style={{
-        width: 5, height: 5, borderRadius: '50%',
+        width: 7, height: 7, borderRadius: '50%',
         background: V,
         boxShadow: `0 0 6px ${V}`,
         flexShrink: 0,
       }} />
       <span style={{
         fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-        fontSize: 13,
+        fontSize: 19,
         fontWeight: 700,
         letterSpacing: '0.05em',
         color: V,
-        textShadow: `0 0 8px rgba(188,19,254,0.7)`,
+        textShadow: `0 0 12px rgba(188,19,254,0.45)`,
         whiteSpace: 'nowrap',
       }}>
         {tag}
