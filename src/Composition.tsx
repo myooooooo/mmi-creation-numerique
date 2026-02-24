@@ -1,4 +1,4 @@
-import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Audio, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { mmiData } from './mmiData';
 import { GridBackground } from './components/GridBackground';
 import { TechHUD } from './components/TechHUD';
@@ -23,6 +23,9 @@ export const MyComposition: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: '#050505', overflow: 'hidden' }}>
+
+      {/* Background music */}
+      <Audio src={staticFile('music.mp3')} volume={0.5} />
 
       {/* Architectural grid (parallax handled internally) */}
       <GridBackground />

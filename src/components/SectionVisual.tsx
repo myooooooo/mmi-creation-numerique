@@ -254,8 +254,9 @@ export const SectionVisual: React.FC<SectionVisualProps> = ({
   }
   // No image: fallback to data-driven visuals
   switch (section.id) {
+    case 'intro':
+    case 'debouches':
     case 'design-graphique':
-    case 'hard-skills':
       return <LayoutGridVisual localFrame={localFrame} fps={fps} w={w} h={h} />;
     case 'production-av':
       return <WaveformVisual localFrame={localFrame} fps={fps} w={w} h={h} />;
